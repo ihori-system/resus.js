@@ -199,3 +199,34 @@ describe('broadJobs', () => {
     expect(broadJobs.length).toEqual(3);
   });
 });
+
+describe('middleJobs', () => {
+  test('throws without iscoCode', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.middleJobs()).toThrow();
+  });
+
+  test('throws when iscoCode is not string', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.middleJobs(1)).toThrow();
+  });
+
+  test('get middle jobs list', async () => {
+    undici.request.mockReturnValue(Promise.resolve({
+      body: {
+        json: () => {
+          return Promise.resolve({
+            result: [
+              {},
+              {},
+              {},
+            ],
+          });
+        },
+      },
+    }));
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    const middleJobs = await client.middleJobs('B');
+    expect(middleJobs.length).toEqual(3);
+  });
+});

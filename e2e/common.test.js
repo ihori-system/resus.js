@@ -22,8 +22,7 @@ describe('cities', () => {
     expect(cities.length).toEqual(195);
     expect(cities[0]).toEqual({
       prefCode: 1,
-      cityCode:
-      '01100',
+      cityCode: '01100',
       cityName: '札幌市',
       bigCityFlag: '2',
     });
@@ -65,9 +64,9 @@ describe('middleIndustries', () => {
     const middleIndustries = await client.middleIndustries('A');
     expect(middleIndustries.length).toEqual(2);
     expect(middleIndustries[0]).toEqual({
-      'sicCode': 'A',
-      'simcCode': '01',
-      'simcName': '農業',
+      sicCode: 'A',
+      simcCode: '01',
+      simcName: '農業',
     });
   });
 });
@@ -78,9 +77,9 @@ describe('narrowIndustries', () => {
     const narrowIndustries = await client.narrowIndustries('01');
     expect(narrowIndustries.length).toEqual(5);
     expect(narrowIndustries[0]).toEqual({
-      'simcCode': '01',
-      'siscCode': '010',
-      'siscName': '管理，補助的経済活動を行う事業所（01農業）',
+      simcCode: '01',
+      siscCode: '010',
+      siscName: '管理，補助的経済活動を行う事業所（01農業）',
     });
   });
 });
@@ -90,6 +89,22 @@ describe('broadJobs', () => {
     const client = new ResusClient({apiKey: process.env.X_API_KEY});
     const broadJobs = await client.broadJobs();
     expect(broadJobs.length).toEqual(12);
-    expect(broadJobs[0]).toEqual({iscoCode: 'A', iscoName: '管理的職業従事者'});
+    expect(broadJobs[0]).toEqual({
+      iscoCode: 'A',
+      iscoName: '管理的職業従事者',
+    });
+  });
+});
+
+describe('middleJobs', () => {
+  test('get middle jobs list', async () => {
+    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const middleJobs = await client.middleJobs('A');
+    expect(middleJobs.length).toEqual(4);
+    expect(middleJobs[0]).toEqual({
+      iscoCode: 'A',
+      ismcoCode: '01',
+      ismcoName: '管理的公務員',
+    });
   });
 });
