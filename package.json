@@ -1,0 +1,35 @@
+{
+  "name": "resus",
+  "version": "0.0.1",
+  "description": "RESUS API client for Node.js",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "jest --config=jest.config.mjs",
+    "test:e2e": "jest --config=jest.config.e2e.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ihori-system/resus.js.git"
+  },
+  "keywords": [],
+  "author": "Issei Horie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ihori-system/resus.js/issues"
+  },
+  "homepage": "https://github.com/ihori-system/resus.js#readme",
+  "dependencies": {
+    "undici": "^5.5.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.1",
+    "eslint": "^8.18.0",
+    "eslint-config-google": "^0.14.0",
+    "jest": "^28.1.1"
+  }
+}
