@@ -10,6 +10,7 @@
     "RESAS",
     "serializers",
     "simc",
+    "sisc",
     "undici",
     "unmocked"
   ]

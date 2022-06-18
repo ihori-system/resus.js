@@ -71,3 +71,16 @@ describe('middleIndustries', () => {
     });
   });
 });
+
+describe('narrowIndustries', () => {
+  test('get narrow industries list', async () => {
+    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const narrowIndustries = await client.narrowIndustries('01');
+    expect(narrowIndustries.length).toEqual(5);
+    expect(narrowIndustries[0]).toEqual({
+      'simcCode': '01',
+      'siscCode': '010',
+      'siscName': '管理，補助的経済活動を行う事業所（01農業）',
+    });
+  });
+});
