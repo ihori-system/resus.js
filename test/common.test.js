@@ -230,3 +230,24 @@ describe('middleJobs', () => {
     expect(middleJobs.length).toEqual(3);
   });
 });
+
+describe('broadPatents', () => {
+  test('get broad patents list', async () => {
+    undici.request.mockReturnValue(Promise.resolve({
+      body: {
+        json: () => {
+          return Promise.resolve({
+            result: [
+              {},
+              {},
+              {},
+            ],
+          });
+        },
+      },
+    }));
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    const broadPatents = await client.broadPatents();
+    expect(broadPatents.length).toEqual(3);
+  });
+});
