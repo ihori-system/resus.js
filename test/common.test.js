@@ -313,3 +313,24 @@ describe('middlePatents', () => {
     expect(customs.length).toEqual(3);
   });
 });
+
+describe('broadRegions', () => {
+  test('get broad regions list', async () => {
+    undici.request.mockReturnValue(Promise.resolve({
+      body: {
+        json: () => {
+          return Promise.resolve({
+            result: [
+              {},
+              {},
+              {},
+            ],
+          });
+        },
+      },
+    }));
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    const broadRegions = await client.broadRegions();
+    expect(broadRegions.length).toEqual(3);
+  });
+});
