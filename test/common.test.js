@@ -251,3 +251,34 @@ describe('broadPatents', () => {
     expect(broadPatents.length).toEqual(3);
   });
 });
+
+describe('middlePatents', () => {
+  test('throws without tecCode', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.middlePatents()).toThrow();
+  });
+
+  test('throws when tecCode is not string', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.middlePatents(1)).toThrow();
+  });
+
+  test('get middle patents list', async () => {
+    undici.request.mockReturnValue(Promise.resolve({
+      body: {
+        json: () => {
+          return Promise.resolve({
+            result: [
+              {},
+              {},
+              {},
+            ],
+          });
+        },
+      },
+    }));
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    const middlePatents = await client.middlePatents('H');
+    expect(middlePatents.length).toEqual(3);
+  });
+});
