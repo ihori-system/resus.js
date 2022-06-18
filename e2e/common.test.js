@@ -7,15 +7,42 @@ describe('prefectures', () => {
     const client = new ResusClient({apiKey: process.env.X_API_KEY});
     const prefectures = await client.prefectures();
     expect(prefectures.length).toEqual(47);
-    expect(prefectures[0]).toEqual({prefCode: 1, prefName: '北海道'});
+    expect(prefectures[0]).toEqual({
+      prefCode: 1,
+      prefName: '北海道',
+    });
   });
 });
 
 describe('cities', () => {
   test('get cities list', async () => {
+    const PREF_CODE = 1; // 北海道
     const client = new ResusClient({apiKey: process.env.X_API_KEY});
-    const cities = await client.cities();
-    expect(cities.length).toEqual(1922);
-    expect(cities[0]).toEqual({prefCode: 1, cityCode: '01100', cityName: '札幌市', bigCityFlag: '2'});
+    const cities = await client.cities(PREF_CODE);
+    expect(cities.length).toEqual(195);
+    expect(cities[0]).toEqual({
+      prefCode: 1,
+      cityCode:
+      '01100',
+      cityName: '札幌市',
+      bigCityFlag: '2',
+    });
+  });
+});
+
+describe('oldCities', () => {
+  test('get old cities list', async () => {
+    const PREF_CODE = 2; // 青森県
+    const CITY_CODE = '02201'; // 青森市
+    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const oldCities = await client.oldCities(PREF_CODE, CITY_CODE);
+    expect(oldCities.length).toEqual(20);
+    expect(oldCities[0]).toEqual( {
+      prefCode: 2,
+      cityCode: '02201',
+      cityName: '青森市',
+      oldCityCode: '01',
+      oldCityName: '奥内村',
+    });
   });
 });
