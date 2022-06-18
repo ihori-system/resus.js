@@ -147,3 +147,34 @@ describe('middleIndustries', () => {
     expect(broadIndustries.length).toEqual(3);
   });
 });
+
+describe('narrowIndustries', () => {
+  test('throws without simcCode', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.narrowIndustries()).toThrow();
+  });
+
+  test('throws when simcCode is not string', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.narrowIndustries(1)).toThrow();
+  });
+
+  test('get narrow industries list', async () => {
+    undici.request.mockReturnValue(Promise.resolve({
+      body: {
+        json: () => {
+          return Promise.resolve({
+            result: [
+              {},
+              {},
+              {},
+            ],
+          });
+        },
+      },
+    }));
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    const narrowIndustries = await client.narrowIndustries('02');
+    expect(narrowIndustries.length).toEqual(3);
+  });
+});
