@@ -148,3 +148,15 @@ describe('customs', () => {
     });
   });
 });
+
+describe('broadRegions', () => {
+  test('get broad regions list', async () => {
+    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const broadRegions = await client.broadRegions();
+    expect(broadRegions.length).toEqual(6);
+    expect(broadRegions[0]).toEqual({
+      regionCode: 1,
+      regionName: 'アジア州',
+    });
+  });
+});
