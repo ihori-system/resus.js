@@ -58,3 +58,16 @@ describe('broadIndustries', () => {
     });
   });
 });
+
+describe('middleIndustries', () => {
+  test('get middle industries list', async () => {
+    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const middleIndustries = await client.middleIndustries('A');
+    expect(middleIndustries.length).toEqual(2);
+    expect(middleIndustries[0]).toEqual({
+      'sicCode': 'A',
+      'simcCode': '01',
+      'simcName': '農業',
+    });
+  });
+});

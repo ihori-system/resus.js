@@ -116,3 +116,34 @@ describe('broadIndustries', () => {
     expect(broadIndustries.length).toEqual(3);
   });
 });
+
+describe('middleIndustries', () => {
+  test('throws without sicCode', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.middleIndustries()).toThrow();
+  });
+
+  test('throws when sicCode is not string', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.middleIndustries(1)).toThrow();
+  });
+
+  test('get middle industries list', async () => {
+    undici.request.mockReturnValue(Promise.resolve({
+      body: {
+        json: () => {
+          return Promise.resolve({
+            result: [
+              {},
+              {},
+              {},
+            ],
+          });
+        },
+      },
+    }));
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    const broadIndustries = await client.middleIndustries('A');
+    expect(broadIndustries.length).toEqual(3);
+  });
+});
