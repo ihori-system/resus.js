@@ -108,3 +108,15 @@ describe('middleJobs', () => {
     });
   });
 });
+
+describe('broadPatents', () => {
+  test('get broad patents list', async () => {
+    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const broadPatents = await client.broadPatents();
+    expect(broadPatents.length).toEqual(9);
+    expect(broadPatents[0]).toEqual({
+      tecCode: '',
+      tecName: '',
+    });
+  });
+});
