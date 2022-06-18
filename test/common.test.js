@@ -282,3 +282,34 @@ describe('middlePatents', () => {
     expect(middlePatents.length).toEqual(3);
   });
 });
+
+describe('middlePatents', () => {
+  test('throws without prefCode', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.customs()).toThrow();
+  });
+
+  test('throws when prefCode is not number', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.customs('1')).toThrow();
+  });
+
+  test('get customs list', async () => {
+    undici.request.mockReturnValue(Promise.resolve({
+      body: {
+        json: () => {
+          return Promise.resolve({
+            result: [
+              {},
+              {},
+              {},
+            ],
+          });
+        },
+      },
+    }));
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    const customs = await client.customs(1);
+    expect(customs.length).toEqual(3);
+  });
+});
