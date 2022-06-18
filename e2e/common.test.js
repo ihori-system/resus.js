@@ -134,3 +134,17 @@ describe('middlePatents', () => {
     });
   });
 });
+
+describe('customs', () => {
+  test('get customs list', async () => {
+    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const customs = await client.customs(1);
+    expect(customs.length).toEqual(15);
+    expect(customs[0]).toEqual({
+      customHouseCode: 800,
+      customHouseName: '函館港',
+      prefCode: 1,
+      prefName: '北海道',
+    });
+  });
+});
