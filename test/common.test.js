@@ -178,3 +178,24 @@ describe('narrowIndustries', () => {
     expect(narrowIndustries.length).toEqual(3);
   });
 });
+
+describe('broadJobs', () => {
+  test('get broad jobs list', async () => {
+    undici.request.mockReturnValue(Promise.resolve({
+      body: {
+        json: () => {
+          return Promise.resolve({
+            result: [
+              {},
+              {},
+              {},
+            ],
+          });
+        },
+      },
+    }));
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    const broadJobs = await client.broadJobs();
+    expect(broadJobs.length).toEqual(3);
+  });
+});

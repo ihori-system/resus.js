@@ -84,3 +84,12 @@ describe('narrowIndustries', () => {
     });
   });
 });
+
+describe('broadJobs', () => {
+  test('get broad jobs list', async () => {
+    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const broadJobs = await client.broadJobs();
+    expect(broadJobs.length).toEqual(12);
+    expect(broadJobs[0]).toEqual({iscoCode: 'A', iscoName: '管理的職業従事者'});
+  });
+});
