@@ -120,3 +120,17 @@ describe('broadPatents', () => {
     });
   });
 });
+
+describe('middlePatents', () => {
+  test('get middle patents list', async () => {
+    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const middlePatents = await client.middlePatents('A');
+    expect(middlePatents.length).toEqual(5);
+    expect(middlePatents[0]).toEqual({
+      tecCode: 'A',
+      tecName: '生活必需品',
+      themeCode: 'A0',
+      themeName: '農業',
+    });
+  });
+});
