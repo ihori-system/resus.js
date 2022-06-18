@@ -46,3 +46,15 @@ describe('oldCities', () => {
     });
   });
 });
+
+describe('broadIndustries', () => {
+  test('get broad industries list', async () => {
+    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const broadIndustries = await client.broadIndustries();
+    expect(broadIndustries.length).toEqual(20);
+    expect(broadIndustries[0]).toEqual({
+      sicCode: 'A',
+      sicName: '農業，林業',
+    });
+  });
+});
