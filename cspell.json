@@ -1,6 +1,15 @@
 {
+  "ignoreWords": [
+    "btcnc"
+  ],
   "words": [
+    "lcov",
+    "horie",
+    "ihori",
     "resus",
-    "RESAS"
+    "RESAS",
+    "serializers",
+    "undici",
+    "unmocked"
   ]
 }
