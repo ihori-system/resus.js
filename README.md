@@ -1,6 +1,8 @@
 resus.js
 ===
 
+[![CI](https://github.com/ihori-system/resus.js/actions/workflows/ci.yml/badge.svg)](https://github.com/ihori-system/resus.js/actions/workflows/ci.yml)
+
 [RESAS API](https://opendata.resas-portal.go.jp/) client for Node.js
 
 ## Getting started
