@@ -7,7 +7,27 @@ resus.js
 
 ## Getting started
 
-TBD
+1) 利用登録を行い、APIキーを取得
+
+https://opendata.resas-portal.go.jp/form.html
+
+2) ライブラリをインストール
+
+```
+npm i @ihori-system/resus.js
+```
+
+## Usage
+
+サンプルコード:
+
+```javascript
+const ResusClient = require('@ihori-system/resus.js');
+
+const client = new ResusClient({apiKey: '利用登録で取得したAPIキーをここに記載'});
+client.prefectures()
+  .then((prefectures) => console.log(prefecture[0])); // { prefCode: 1, prefName: '北海道' }
+```
 
 ## References
 
