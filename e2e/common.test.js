@@ -181,7 +181,10 @@ describe('agricultureDepartments', () => {
     const client = new ResusClient({apiKey: process.env.X_API_KEY});
     const agricultureDepartments = await client.agricultureDepartments();
     expect(agricultureDepartments.length).toEqual(17);
-    expect(agricultureDepartments[0]).toEqual({sectionCode: 'A', sectionName: '稲作'});
+    expect(agricultureDepartments[0]).toEqual({
+      sectionCode: 'A',
+      sectionName: '稲作',
+    });
   });
 });
 
@@ -190,5 +193,26 @@ describe('patentLocations', () => {
     const client = new ResusClient({apiKey: process.env.X_API_KEY});
     const patentLocations = await client.patentLocations(11, '11362');
     expect(patentLocations.length).toEqual(4);
+    expect(patentLocations[0]).toEqual({
+      id: 8032,
+      prefCode: '11',
+      prefName: '埼玉県',
+      cityCode: '11362',
+      cityName: '皆野町',
+      latitude: 36.07809829711914,
+      longitude: 139.1026153564453,
+    });
+  });
+});
+
+describe('broadTradeInfoItemTypes', () => {
+  test('get broad trade info item types list', async () => {
+    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const broadTradeInfoItemTypes = await client.broadTradeInfoItemTypes();
+    expect(broadTradeInfoItemTypes.length).toEqual(21);
+    expect(broadTradeInfoItemTypes[0]).toEqual({
+      itemCode1: 1,
+      itemName1: '動物（生きているものに限る。）及び動物性生産品',
+    });
   });
 });
