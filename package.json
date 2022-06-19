@@ -1,6 +1,6 @@
 {
-  "name": "resus",
-  "version": "0.0.1",
+  "name": "@ihori-system/resus.js",
+  "version": "0.0.2",
   "description": "RESUS API client for Node.js",
   "main": "index.js",
   "directories": {
