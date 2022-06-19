@@ -1,10 +1,10 @@
-const ResusClient = require('../lib');
+const ResasClient = require('../lib');
 
 require('dotenv').config();
 
 describe('prefectures', () => {
   test('get prefectures list', async () => {
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const prefectures = await client.prefectures();
     expect(prefectures.length).toEqual(47);
     expect(prefectures[0]).toEqual({
@@ -17,7 +17,7 @@ describe('prefectures', () => {
 describe('cities', () => {
   test('get cities list', async () => {
     const PREF_CODE = 1; // 北海道
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const cities = await client.cities(PREF_CODE);
     expect(cities.length).toEqual(195);
     expect(cities[0]).toEqual({
@@ -33,7 +33,7 @@ describe('oldCities', () => {
   test('get old cities list', async () => {
     const PREF_CODE = 2; // 青森県
     const CITY_CODE = '02201'; // 青森市
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const oldCities = await client.oldCities(PREF_CODE, CITY_CODE);
     expect(oldCities.length).toEqual(20);
     expect(oldCities[0]).toEqual( {
@@ -48,7 +48,7 @@ describe('oldCities', () => {
 
 describe('broadIndustries', () => {
   test('get broad industries list', async () => {
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const broadIndustries = await client.broadIndustries();
     expect(broadIndustries.length).toEqual(20);
     expect(broadIndustries[0]).toEqual({
@@ -60,7 +60,7 @@ describe('broadIndustries', () => {
 
 describe('middleIndustries', () => {
   test('get middle industries list', async () => {
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const middleIndustries = await client.middleIndustries('A');
     expect(middleIndustries.length).toEqual(2);
     expect(middleIndustries[0]).toEqual({
@@ -73,7 +73,7 @@ describe('middleIndustries', () => {
 
 describe('narrowIndustries', () => {
   test('get narrow industries list', async () => {
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const narrowIndustries = await client.narrowIndustries('01');
     expect(narrowIndustries.length).toEqual(5);
     expect(narrowIndustries[0]).toEqual({
@@ -86,7 +86,7 @@ describe('narrowIndustries', () => {
 
 describe('broadJobs', () => {
   test('get broad jobs list', async () => {
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const broadJobs = await client.broadJobs();
     expect(broadJobs.length).toEqual(12);
     expect(broadJobs[0]).toEqual({
@@ -98,7 +98,7 @@ describe('broadJobs', () => {
 
 describe('middleJobs', () => {
   test('get middle jobs list', async () => {
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const middleJobs = await client.middleJobs('A');
     expect(middleJobs.length).toEqual(4);
     expect(middleJobs[0]).toEqual({
@@ -111,7 +111,7 @@ describe('middleJobs', () => {
 
 describe('broadPatents', () => {
   test('get broad patents list', async () => {
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const broadPatents = await client.broadPatents();
     expect(broadPatents.length).toEqual(9);
     expect(broadPatents[0]).toEqual({
@@ -123,7 +123,7 @@ describe('broadPatents', () => {
 
 describe('middlePatents', () => {
   test('get middle patents list', async () => {
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const middlePatents = await client.middlePatents('A');
     expect(middlePatents.length).toEqual(5);
     expect(middlePatents[0]).toEqual({
@@ -137,7 +137,7 @@ describe('middlePatents', () => {
 
 describe('customs', () => {
   test('get customs list', async () => {
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const customs = await client.customs(1);
     expect(customs.length).toEqual(15);
     expect(customs[0]).toEqual({
@@ -151,7 +151,7 @@ describe('customs', () => {
 
 describe('broadRegions', () => {
   test('get broad regions list', async () => {
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const broadRegions = await client.broadRegions();
     expect(broadRegions.length).toEqual(6);
     expect(broadRegions[0]).toEqual({
@@ -163,7 +163,7 @@ describe('broadRegions', () => {
 
 describe('middleRegions', () => {
   test('get middle regions list', async () => {
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const middleRegions = await client.middleRegions(1);
     expect(middleRegions.length).toEqual(53);
     expect(middleRegions[0]).toEqual({
@@ -178,7 +178,7 @@ describe('middleRegions', () => {
 
 describe('agricultureDepartments', () => {
   test('get agriculture departments list', async () => {
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const agricultureDepartments = await client.agricultureDepartments();
     expect(agricultureDepartments.length).toEqual(17);
     expect(agricultureDepartments[0]).toEqual({
@@ -190,7 +190,7 @@ describe('agricultureDepartments', () => {
 
 describe('patentLocations', () => {
   test('get patent locations list', async () => {
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const patentLocations = await client.patentLocations(11, '11362');
     expect(patentLocations.length).toEqual(4);
     expect(patentLocations[0]).toEqual({
@@ -207,7 +207,7 @@ describe('patentLocations', () => {
 
 describe('broadTradeInfoItemTypes', () => {
   test('get broad trade info item types list', async () => {
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const broadTradeInfoItemTypes = await client.broadTradeInfoItemTypes();
     expect(broadTradeInfoItemTypes.length).toEqual(21);
     expect(broadTradeInfoItemTypes[0]).toEqual({
@@ -219,7 +219,7 @@ describe('broadTradeInfoItemTypes', () => {
 
 describe('middleTradeInfoItemTypes', () => {
   test('get middle trade info item types list', async () => {
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const middleTradeInfoItemTypes = await client.middleTradeInfoItemTypes(1);
     expect(middleTradeInfoItemTypes.length).toEqual(5);
     expect(middleTradeInfoItemTypes[0]).toEqual({
@@ -233,7 +233,7 @@ describe('middleTradeInfoItemTypes', () => {
 
 describe('narrowTradeInfoItemTypes', () => {
   test('get middle trade info item types list', async () => {
-    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const client = new ResasClient({apiKey: process.env.X_API_KEY});
     const narrowTradeInfoItemTypes = await client.narrowTradeInfoItemTypes(6, 33);
     expect(narrowTradeInfoItemTypes.length).toEqual(7);
     expect(narrowTradeInfoItemTypes[0]).toEqual({
