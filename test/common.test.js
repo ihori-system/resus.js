@@ -480,3 +480,45 @@ describe('middleTradeInfoItemTypes', () => {
     expect(middleTradeInfoItemTypes.length).toEqual(3);
   });
 });
+
+describe('narrowTradeInfoItemTypes', () => {
+  test('throws when itemCode1 is missing', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.narrowTradeInfoItemTypes()).toThrow();
+  });
+
+  test('throws when itemCode1 is not number', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.narrowTradeInfoItemTypes('1')).toThrow();
+  });
+
+  test('throws when itemCode2 is missing', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.narrowTradeInfoItemTypes(1)).toThrow();
+  });
+
+  test('throws when itemCode2 is not number', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.narrowTradeInfoItemTypes(1, '1')).toThrow();
+  });
+
+
+  test('get narrow trade info item types list', async () => {
+    undici.request.mockReturnValue(Promise.resolve({
+      body: {
+        json: () => {
+          return Promise.resolve({
+            result: [
+              {},
+              {},
+              {},
+            ],
+          });
+        },
+      },
+    }));
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    const narrowTradeInfoItemTypes = await client.narrowTradeInfoItemTypes(1, 1);
+    expect(narrowTradeInfoItemTypes.length).toEqual(3);
+  });
+});
