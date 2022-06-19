@@ -160,3 +160,18 @@ describe('broadRegions', () => {
     });
   });
 });
+
+describe('middleRegions', () => {
+  test('get middle regions list', async () => {
+    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const middleRegions = await client.middleRegions(1);
+    expect(middleRegions.length).toEqual(53);
+    expect(middleRegions[0]).toEqual({
+      'countryCode': 103,
+      'countryName': '大韓民国',
+      'regionCode': 1,
+      'regionName': 'アジア州',
+      'remarks': '',
+    });
+  });
+});

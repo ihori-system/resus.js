@@ -334,3 +334,34 @@ describe('broadRegions', () => {
     expect(broadRegions.length).toEqual(3);
   });
 });
+
+describe('middleRegions', () => {
+  test('throws when regionCode is missing', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.middleRegions()).toThrow();
+  });
+
+  test('throws when regionCode is not number', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.middleRegions('1')).toThrow();
+  });
+
+  test('get middle regions list', async () => {
+    undici.request.mockReturnValue(Promise.resolve({
+      body: {
+        json: () => {
+          return Promise.resolve({
+            result: [
+              {},
+              {},
+              {},
+            ],
+          });
+        },
+      },
+    }));
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    const middleRegions = await client.middleRegions(1);
+    expect(middleRegions.length).toEqual(3);
+  });
+});
