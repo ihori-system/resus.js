@@ -176,11 +176,19 @@ describe('middleRegions', () => {
   });
 });
 
-describe('agricultureDepartmentsRegions', () => {
-  test('get agriculture departments regions list', async () => {
+describe('agricultureDepartments', () => {
+  test('get agriculture departments list', async () => {
     const client = new ResusClient({apiKey: process.env.X_API_KEY});
-    const agricultureDepartmentsRegions = await client.agricultureDepartmentsRegions();
-    expect(agricultureDepartmentsRegions.length).toEqual(17);
-    expect(agricultureDepartmentsRegions[0]).toEqual({sectionCode: 'A', sectionName: '稲作'});
+    const agricultureDepartments = await client.agricultureDepartments();
+    expect(agricultureDepartments.length).toEqual(17);
+    expect(agricultureDepartments[0]).toEqual({sectionCode: 'A', sectionName: '稲作'});
+  });
+});
+
+describe('patentLocations', () => {
+  test('get patent locations list', async () => {
+    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const patentLocations = await client.patentLocations(11, '11362');
+    expect(patentLocations.length).toEqual(4);
   });
 });

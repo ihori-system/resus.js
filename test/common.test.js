@@ -366,8 +366,8 @@ describe('middleRegions', () => {
   });
 });
 
-describe('agricultureDepartmentsRegions', () => {
-  test('get agriculture departments regions list', async () => {
+describe('agricultureDepartments', () => {
+  test('get agriculture departments list', async () => {
     undici.request.mockReturnValue(Promise.resolve({
       body: {
         json: () => {
@@ -382,7 +382,48 @@ describe('agricultureDepartmentsRegions', () => {
       },
     }));
     const client = new ResusClient({apiKey: 'xxxxx'});
-    const agricultureDepartmentsRegions = await client.agricultureDepartmentsRegions();
-    expect(agricultureDepartmentsRegions.length).toEqual(3);
+    const agricultureDepartments = await client.agricultureDepartments();
+    expect(agricultureDepartments.length).toEqual(3);
+  });
+});
+
+describe('patentLocations', () => {
+  test('throws when prefCode is missing', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.patentLocations()).toThrow();
+  });
+
+  test('throws when prefCode is not number', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.patentLocations('1')).toThrow();
+  });
+
+  test('throws when cityCode is missing', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.patentLocations(1)).toThrow();
+  });
+
+  test('throws when cityCode is not string', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.patentLocations(1, 1)).toThrow();
+  });
+
+  test('get patent locations list', async () => {
+    undici.request.mockReturnValue(Promise.resolve({
+      body: {
+        json: () => {
+          return Promise.resolve({
+            result: [
+              {},
+              {},
+              {},
+            ],
+          });
+        },
+      },
+    }));
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    const patentLocations = await client.patentLocations(1, '1');
+    expect(patentLocations.length).toEqual(3);
   });
 });
