@@ -427,3 +427,24 @@ describe('patentLocations', () => {
     expect(patentLocations.length).toEqual(3);
   });
 });
+
+describe('broadTradeInfoItemTypes', () => {
+  test('get broad trade info item types list', async () => {
+    undici.request.mockReturnValue(Promise.resolve({
+      body: {
+        json: () => {
+          return Promise.resolve({
+            result: [
+              {},
+              {},
+              {},
+            ],
+          });
+        },
+      },
+    }));
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    const broadTradeInfoItemTypes = await client.broadTradeInfoItemTypes();
+    expect(broadTradeInfoItemTypes.length).toEqual(3);
+  });
+});
