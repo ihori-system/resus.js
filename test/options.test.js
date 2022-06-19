@@ -1,14 +1,14 @@
-const ResusClient = require('../lib');
+const ResasClient = require('../lib');
 
 test('throws without option', () => {
   const options = undefined;
-  expect(() => new ResusClient(options)).toThrow();
+  expect(() => new ResasClient(options)).toThrow();
 });
 
 test('throws without `apiKey` option', () => {
-  expect(() => new ResusClient({})).toThrow();
+  expect(() => new ResasClient({})).toThrow();
 });
 
 test('not to throw with `apiKey` option', () => {
-  expect(() => new ResusClient({apiKey: 'xxxxx'})).not.toThrow();
+  expect(() => new ResasClient({apiKey: 'xxxxx'})).not.toThrow();
 });

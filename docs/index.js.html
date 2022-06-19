@@ -28,21 +28,21 @@
         <article>
             <pre class="prettyprint source linenums"><code>const {request} = require('undici');
 
-const PACKAGE_NAME = '@ihori-system/resus.js';
+const PACKAGE_NAME = '@ihori-system/resas.js';
 const API_ENDPOINT = 'https://opendata.resas-portal.go.jp';
 
 /**
- * @typedef {Object} ResusClientOption
+ * @typedef {Object} ResasClientOption
  * @property {string} apiKey APIキー
  */
 
 /**
- * ResusClient
+ * ResasClient
  */
-class ResusClient {
+class ResasClient {
   /**
    * constructor
-   * @param {ResusClientOption} options
+   * @param {ResasClientOption} options
    */
   constructor(options) {
     if (options == null) {
@@ -56,9 +56,8 @@ class ResusClient {
   }
 
   /**
-   * 都道府県一覧
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/prefectures.html|都道府県一覧}
    * @return {Promise&lt;Array>} prefectures data
-   * Ref: https://opendata.resas-portal.go.jp/docs/api/v1/prefectures.html
    */
   prefectures() {
     return request(`${API_ENDPOINT}/api/v1/prefectures`, {headers: this.defaultHeaders})
@@ -67,10 +66,9 @@ class ResusClient {
   }
 
   /**
-   * 市区町村一覧
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/cities.html|市区町村一覧}
    * @param {number} prefCode 都道府県コード
    * @return {Promise&lt;Array>} 市区町村一覧
-   * Ref: https://opendata.resas-portal.go.jp/docs/api/v1/cities.html
    */
   cities(prefCode) {
     if (prefCode == null) {
@@ -90,11 +88,10 @@ class ResusClient {
   }
 
   /**
-   * 旧市区町村一覧
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/oldCities.html|旧市区町村一覧}
    * @param {number} prefCode 都道府県コード
    * @param {string} cityCode 市区町村コード
    * @return {Promise&lt;Array>} 旧市区町村一覧
-   * Ref: https://opendata.resas-portal.go.jp/docs/api/v1/oldCities.html
    */
   oldCities(prefCode, cityCode) {
     if (prefCode == null) {
@@ -120,9 +117,8 @@ class ResusClient {
   }
 
   /**
-   * 産業大分類
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/industries/broad.html|産業大分類}
    * @return {Promise&lt;Array>} 産業大分類
-   * Ref: https://opendata.resas-portal.go.jp/docs/api/v1/industries/broad.html
    */
   broadIndustries() {
     return request(`${API_ENDPOINT}/api/v1/industries/broad`, {headers: this.defaultHeaders})
@@ -131,10 +127,9 @@ class ResusClient {
   }
 
   /**
-   * 産業中分類
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/industries/middle.html|産業中分類}
    * @param {string} sicCode 産業大分類コード
    * @return {Promise&lt;Array>} 産業中分類
-   * Ref: https://opendata.resas-portal.go.jp/docs/api/v1/industries/middle.html
    */
   middleIndustries(sicCode) {
     if (sicCode == null) {
@@ -154,10 +149,9 @@ class ResusClient {
   }
 
   /**
-   * 産業小分類
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/industries/narrow.html|産業小分類}
    * @param {string} simcCode 産業中分類コード
    * @return {Promise&lt;Array>} 産業小分類
-   * Ref: https://opendata.resas-portal.go.jp/docs/api/v1/industries/narrow.html
    */
   narrowIndustries(simcCode) {
     if (simcCode == null) {
@@ -177,9 +171,8 @@ class ResusClient {
   }
 
   /**
-   * 職業大分類
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/jobs/broad.html|職業大分類}
    * @return {Promise&lt;Array>} 職業大分類
-   * Ref: https://opendata.resas-portal.go.jp/docs/api/v1/jobs/broad.html
    */
   broadJobs() {
     return request(`${API_ENDPOINT}/api/v1/jobs/broad`, {headers: this.defaultHeaders})
@@ -188,10 +181,9 @@ class ResusClient {
   }
 
   /**
-   * 職業中分類
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/jobs/middle.html|職業中分類}
    * @param {string} iscoCode 職業大分類コード
    * @return {Promise&lt;Array>} 職業中分類
-   * Ref: https://opendata.resas-portal.go.jp/docs/api/v1/jobs/middle.html
    */
   middleJobs(iscoCode) {
     if (iscoCode == null) {
@@ -211,9 +203,8 @@ class ResusClient {
   }
 
   /**
-   * 特許.技術分野
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/patents/broad.html|特許.技術分野}
    * @return {Promise&lt;Array>} 特許.技術分野
-   * Ref: https://opendata.resas-portal.go.jp/docs/api/v1/patents/broad.html
    */
   broadPatents() {
     return request(`${API_ENDPOINT}/api/v1/patents/broad`, {headers: this.defaultHeaders})
@@ -222,10 +213,9 @@ class ResusClient {
   }
 
   /**
-   * 特許.技術テーマ
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/patents/middle.html|特許.技術テーマ}
    * @param {string} tecCode 技術分野コード
    * @return {Promise&lt;Array>} 特許.技術テーマ
-   * Ref: https://opendata.resas-portal.go.jp/docs/api/v1/patents/middle.html
    */
   middlePatents(tecCode) {
     if (tecCode == null) {
@@ -245,10 +235,9 @@ class ResusClient {
   }
 
   /**
-   * 税関
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/customs.html|税関}
    * @param {number} prefCode 都道府県コード
    * @return {Promise&lt;Array>} 税関
-   * Ref: https://opendata.resas-portal.go.jp/docs/api/v1/customs.html
    */
   customs(prefCode) {
     if (prefCode == null) {
@@ -268,9 +257,8 @@ class ResusClient {
   }
 
   /**
-   * 輸出入.取引国_地域
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/regions/broad.html|輸出入.取引国_地域}
    * @return {Promise&lt;Array>} 輸出入.取引国_地域
-   * Ref: https://opendata.resas-portal.go.jp/docs/api/v1/regions/broad.html
    */
   broadRegions() {
     return request(`${API_ENDPOINT}/api/v1/regions/broad`, {headers: this.defaultHeaders})
@@ -279,10 +267,9 @@ class ResusClient {
   }
 
   /**
-   * 輸出入.取引国_国
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/regions/middle.html|輸出入.取引国_国}
    * @param {number} regionCode 地域コード
    * @return {Promise&lt;Array>} 輸出入.取引国_国
-   * Ref: https://opendata.resas-portal.go.jp/docs/api/v1/regions/middle.html
    */
   middleRegions(regionCode) {
     if (regionCode == null) {
@@ -302,9 +289,8 @@ class ResusClient {
   }
 
   /**
-   * 農業部門
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/regions/agricultureDepartments.html|農業部門}
    * @return {Promise&lt;Array>} 農業部門
-   * Ref: https://opendata.resas-portal.go.jp/docs/api/v1/regions/agricultureDepartments.html
    */
   agricultureDepartments() {
     return request(`${API_ENDPOINT}/api/v1/regions/agricultureDepartments`, {headers: this.defaultHeaders})
@@ -313,11 +299,10 @@ class ResusClient {
   }
 
   /**
-   * 特許権者の所在地
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/patents/locations.html|特許権者の所在地}
    * @param {number} prefCode 都道府県コード
    * @param {string} cityCode 市区町村コード。「すべての市区町村」を選択する場合は「-」を指定。
    * @return {Promise&lt;Array>} 特許権者の所在地
-   * Ref: https://opendata.resas-portal.go.jp/docs/api/v1/patents/locations.html
    */
   patentLocations(prefCode, cityCode) {
     if (prefCode == null) {
@@ -344,9 +329,8 @@ class ResusClient {
   }
 
   /**
-   * 輸出入.品目_大分類
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/tradeInfoItemTypes/broad.html|輸出入.品目_大分類}
    * @return {Promise&lt;Array>} 輸出入.品目_大分類
-   * Ref: https://opendata.resas-portal.go.jp/docs/api/v1/tradeInfoItemTypes/broad.html
    */
   broadTradeInfoItemTypes() {
     return request(`${API_ENDPOINT}/api/v1/tradeInfoItemTypes/broad`, {headers: this.defaultHeaders})
@@ -355,10 +339,9 @@ class ResusClient {
   }
 
   /**
-   * 輸出入.品目_中分類
-   * @param {number} itemCode1 商品大分類コード
-   * @return {Promise&lt;Array>} 輸出入.品目_中分類。「すべての大分類」を選択する場合は「-」を指定。
-   * Ref: https://opendata.resas-portal.go.jp/docs/api/v1/tradeInfoItemTypes/middle.html
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/tradeInfoItemTypes/middle.html|輸出入.品目_中分類}
+   * @param {number} itemCode1 商品大分類コード。「すべての大分類」を選択する場合は「-」を指定。
+   * @return {Promise&lt;Array>} 輸出入.品目_中分類
    */
   middleTradeInfoItemTypes(itemCode1) {
     if (itemCode1 == null) {
@@ -376,9 +359,39 @@ class ResusClient {
         .then(({body}) => body.json())
         .then((data) => data.result);
   }
+
+  /**
+   * {@link https://opendata.resas-portal.go.jp/docs/api/v1/tradeInfoItemTypes/narrow.html|輸出入.品目_小分類}
+   * @param {number} itemCode1 品目_大分類コード
+   * @param {number} itemCode2 品目_中分類コード
+   * @return {Promise&lt;Array>} 輸出入.品目_小分類
+   */
+  narrowTradeInfoItemTypes(itemCode1, itemCode2) {
+    if (itemCode1 == null) {
+      throw new TypeError(`[${PACKAGE_NAME}] itemCode1引数が指定されていません`);
+    }
+    if (typeof itemCode1 !== 'number') {
+      throw new TypeError(`[${PACKAGE_NAME}] itemCode1に数値以外の値が入っています`);
+    }
+    if (itemCode2 == null) {
+      throw new TypeError(`[${PACKAGE_NAME}] itemCode2引数が指定されていません`);
+    }
+    if (typeof itemCode2 !== 'number') {
+      throw new TypeError(`[${PACKAGE_NAME}] itemCode2に数値以外の値が入っています`);
+    }
+    return request(`${API_ENDPOINT}/api/v1/tradeInfoItemTypes/narrow`, {
+      headers: this.defaultHeaders,
+      query: {
+        itemCode1,
+        itemCode2,
+      },
+    })
+        .then(({body}) => body.json())
+        .then((data) => data.result);
+  }
 };
 
-module.exports = ResusClient;
+module.exports = ResasClient;
 </code></pre>
         </article>
     </section>
@@ -389,13 +402,13 @@ module.exports = ResusClient;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ResusClient.html">ResusClient</a></li></ul><h3><a href="global.html">Global</a></h3>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="ResasClient.html">ResasClient</a></li></ul><h3><a href="global.html">Global</a></h3>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Sun Jun 19 2022 23:59:00 GMT+0900 (Japan Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Mon Jun 20 2022 08:46:54 GMT+0900 (Japan Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
