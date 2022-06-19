@@ -365,3 +365,24 @@ describe('middleRegions', () => {
     expect(middleRegions.length).toEqual(3);
   });
 });
+
+describe('agricultureDepartmentsRegions', () => {
+  test('get agriculture departments regions list', async () => {
+    undici.request.mockReturnValue(Promise.resolve({
+      body: {
+        json: () => {
+          return Promise.resolve({
+            result: [
+              {},
+              {},
+              {},
+            ],
+          });
+        },
+      },
+    }));
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    const agricultureDepartmentsRegions = await client.agricultureDepartmentsRegions();
+    expect(agricultureDepartmentsRegions.length).toEqual(3);
+  });
+});

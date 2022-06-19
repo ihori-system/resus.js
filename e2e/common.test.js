@@ -167,11 +167,20 @@ describe('middleRegions', () => {
     const middleRegions = await client.middleRegions(1);
     expect(middleRegions.length).toEqual(53);
     expect(middleRegions[0]).toEqual({
-      'countryCode': 103,
-      'countryName': '大韓民国',
-      'regionCode': 1,
-      'regionName': 'アジア州',
-      'remarks': '',
+      countryCode: 103,
+      countryName: '大韓民国',
+      regionCode: 1,
+      regionName: 'アジア州',
+      remarks: '',
     });
+  });
+});
+
+describe('agricultureDepartmentsRegions', () => {
+  test('get agriculture departments regions list', async () => {
+    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const agricultureDepartmentsRegions = await client.agricultureDepartmentsRegions();
+    expect(agricultureDepartmentsRegions.length).toEqual(17);
+    expect(agricultureDepartmentsRegions[0]).toEqual({sectionCode: 'A', sectionName: '稲作'});
   });
 });
