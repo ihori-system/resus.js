@@ -230,3 +230,19 @@ describe('middleTradeInfoItemTypes', () => {
     });
   });
 });
+
+describe('narrowTradeInfoItemTypes', () => {
+  test('get middle trade info item types list', async () => {
+    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const narrowTradeInfoItemTypes = await client.narrowTradeInfoItemTypes(6, 33);
+    expect(narrowTradeInfoItemTypes.length).toEqual(7);
+    expect(narrowTradeInfoItemTypes[0]).toEqual({
+      itemCode1: 6,
+      itemName1: '化学工業（類似の工業を含む。）の生産品',
+      itemCode2: 33,
+      itemName2: '精油、レジノイド、調製香料及び化粧品類',
+      itemCode3: 3301,
+      itemName3: '精油（コンクリートのもの及びアブソリュートのものを含むものとし、テルペンを除いてあるかないかを問わない。）、レジノイド、オレオレジン抽出物、精油のコンセントレート（冷浸法又は温浸法により得たもので、油脂、ろうその他これらに類する物品を媒質としているものに限る。）、精油からテルペンを除く際に生ずるテルペン系副産物並びに精油のアキュアスディスチレート及びアキュアスソリューション',
+    });
+  });
+});

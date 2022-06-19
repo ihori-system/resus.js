@@ -11,8 +11,8 @@ module.exports = {
     'ecmaVersion': 'latest',
     'sourceType': 'module',
   },
-  "ignorePatterns": [
-    "docs/**"
+  'ignorePatterns': [
+    'docs/**',
   ],
   'rules': {
     'max-len': 'off',
