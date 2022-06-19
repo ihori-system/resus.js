@@ -1,6 +1,6 @@
 {
   "name": "@ihori-system/resas.js",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "RESAS API client for Node.js",
   "main": "index.js",
   "directories": {
