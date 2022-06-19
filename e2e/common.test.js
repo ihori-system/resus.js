@@ -216,3 +216,17 @@ describe('broadTradeInfoItemTypes', () => {
     });
   });
 });
+
+describe('middleTradeInfoItemTypes', () => {
+  test('get middle trade info item types list', async () => {
+    const client = new ResusClient({apiKey: process.env.X_API_KEY});
+    const middleTradeInfoItemTypes = await client.middleTradeInfoItemTypes(1);
+    expect(middleTradeInfoItemTypes.length).toEqual(5);
+    expect(middleTradeInfoItemTypes[0]).toEqual({
+      itemCode1: 1,
+      itemCode2: 1,
+      itemName1: '動物（生きているものに限る。）及び動物性生産品',
+      itemName2: '動物（生きているものに限る。）',
+    });
+  });
+});

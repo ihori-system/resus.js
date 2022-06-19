@@ -448,3 +448,35 @@ describe('broadTradeInfoItemTypes', () => {
     expect(broadTradeInfoItemTypes.length).toEqual(3);
   });
 });
+
+describe('middleTradeInfoItemTypes', () => {
+  test('throws when itemCode1 is missing', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.middleTradeInfoItemTypes()).toThrow();
+  });
+
+  test('throws when itemCode1 is not number', () => {
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    expect(() => client.middleTradeInfoItemTypes('1')).toThrow();
+  });
+
+
+  test('get middle trade info item types list', async () => {
+    undici.request.mockReturnValue(Promise.resolve({
+      body: {
+        json: () => {
+          return Promise.resolve({
+            result: [
+              {},
+              {},
+              {},
+            ],
+          });
+        },
+      },
+    }));
+    const client = new ResusClient({apiKey: 'xxxxx'});
+    const middleTradeInfoItemTypes = await client.middleTradeInfoItemTypes(1);
+    expect(middleTradeInfoItemTypes.length).toEqual(3);
+  });
+});
