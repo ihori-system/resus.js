@@ -1,7 +1,7 @@
 {
-  "name": "@ihori-system/resus.js",
+  "name": "@ihori-system/resas.js",
   "version": "0.0.2",
-  "description": "RESUS API client for Node.js",
+  "description": "RESAS API client for Node.js",
   "main": "index.js",
   "directories": {
     "lib": "lib"
@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ihori-system/resus.js.git"
+    "url": "git+https://github.com/ihori-system/resas.js.git"
   },
   "keywords": [],
   "author": "Issei Horie",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ihori-system/resus.js/issues"
+    "url": "https://github.com/ihori-system/resas.js/issues"
   },
-  "homepage": "https://github.com/ihori-system/resus.js#readme",
+  "homepage": "https://github.com/ihori-system/resas.js#readme",
   "dependencies": {
     "undici": "^5.5.1"
   },
