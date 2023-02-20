@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/ihori-system/resas.js#readme",
   "dependencies": {
-    "undici": "^5.8.0"
+    "undici": "^5.20.0"
   },
   "devDependencies": {
     "dotenv": "^16.0.1",
